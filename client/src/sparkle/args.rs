@@ -26,6 +26,7 @@ pub enum Action {
 #[derive(Debug)]
 pub enum WalletAction {
     Test,
+    Naming,
 }
 
 impl Args {
@@ -77,6 +78,11 @@ impl Args {
                         Command::new("test")
                             .about("Account tests")
                             .arg(Arg::new("wallet-file").help("Wallet file name")),
+                    )
+                    .subcommand(
+                        Command::new("naming")
+                            .about("Account naming tests")
+                            .arg(Arg::new("wallet-file").help("Wallet file name")),
                     ), // .subcommand(
                        //     // Command::new("accounts")
                        //     Command::new("test").about("List wallet accounts").arg(
@@ -113,7 +119,13 @@ impl Args {
                 Action::Wallet {
                     action: WalletAction::Test,
                 }
-            } else {
+            } else if let Some(matches) = matches.subcommand_matches("naming") {
+                wallet_file = matches.get_one::<String>("wallet-file").cloned();
+                Action::Wallet {
+                    action: WalletAction::Naming,
+                }
+            }
+            else {
                 println!("No wallet action specified");
                 std::process::exit(1);
             }

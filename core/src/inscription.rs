@@ -25,6 +25,9 @@ use kaspa_wrpc_client::prelude::*;
 use secp256k1::{rand, Secp256k1, SecretKey};
 use std::str::FromStr;
 use std::sync::Arc;
+use flate2::{write::ZlibEncoder, read::ZlibDecoder, Compression};
+use base64::{engine::general_purpose, Engine as _};
+use std::io::{self, Read, Write};
 
 pub fn demo_keypair() -> (secp256k1::SecretKey, secp256k1::PublicKey) {
     let secp = Secp256k1::new();
@@ -33,7 +36,14 @@ pub fn demo_keypair() -> (secp256k1::SecretKey, secp256k1::PublicKey) {
 }
 
 pub fn ascii_debug_payload(script_sig: &[u8]) {
-    let ascii_string: String = script_sig
+    let ascii_string: String = ascii_debug_payload_message(&script_sig);
+    println!();
+    println!("Envelope debug: {}", ascii_string);
+    println!();
+}
+
+pub fn ascii_debug_payload_message(script_sig: &[u8]) -> String {
+    script_sig
         .iter()
         .map(|&b| {
             if b.is_ascii() {
@@ -42,10 +52,34 @@ pub fn ascii_debug_payload(script_sig: &[u8]) {
                 '.' // Replace non-ASCII bytes with a placeholder
             }
         })
-        .collect();
-    println!();
-    println!("Envelope debug: {}", ascii_string);
-    println!();
+        .collect()
+}
+
+fn encode_account_name(data: &[u8]) -> String {
+    let mut encoder = ZlibEncoder::new(Vec::new(), Compression::default());
+    encoder.write_all(data).expect("Failed to write data");
+    let compressed_data = encoder.finish().expect("Failed to finish compression");
+    general_purpose::STANDARD.encode(compressed_data)
+}
+
+fn decode_account_name(encoded: &str) -> io::Result<Vec<u8>> {
+    let compressed_data = general_purpose::STANDARD.decode(encoded).map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e))?;
+    let mut decoder = ZlibDecoder::new(&compressed_data[..]);
+    let mut decompressed_data = Vec::new();
+    decoder.read_to_end(&mut decompressed_data)?;
+    Ok(decompressed_data)
+}
+
+pub fn check_account_encoding(name: &str) -> Option<String> {
+    if let Ok(script_sig) = decode_account_name(&name) {
+        let redeem_lock_p2sh = pay_to_script_hash_script(&script_sig);
+        let debug = ascii_debug_payload_message(&script_sig);
+        let p2sh =
+            extract_script_pub_key_address(&redeem_lock_p2sh, "kaspatest".try_into().unwrap()).unwrap();
+        let message = format!("P2SH: {}\nScriptSig: {}", p2sh, debug);
+        return Some(message);
+    }
+    None
 }
 
 fn redeem_pubkey(redeem_script: &[u8], pubkey: &[u8]) -> ScriptBuilderResult<Vec<u8>> {
@@ -317,6 +351,26 @@ mod tests {
     use kaspa_txscript_errors::TxScriptError;
 
     #[test]
+    pub fn test_encoding() {
+        let data: &[u8] = b"Hello, world! This is a test of compression and encoding.";
+        let encoded = encode_account_name(data);
+    
+        println!("Original: {:?}", data);
+        println!("Compressed and Encoded (Base64): {}", encoded);
+    
+        // Decode and decompress
+        match decode_account_name(&encoded) {
+            Ok(decoded_data) => {
+                println!("Decoded and Decompressed: {:?}", decoded_data);
+                println!("As String: {}", String::from_utf8_lossy(&decoded_data));
+            },
+            Err(e) => {
+                eprintln!("Failed to decode and decompress: {}", e);
+            }
+        }
+    }
+
+    #[test]
     pub fn test_and_verify_sign() {
         let (secret_key, public_key) = demo_keypair();
         // let pubkey = ScriptVec::from_slice(&public_key.serialize());
@@ -328,6 +382,8 @@ mod tests {
 
         let (_, script_sig) = deploy_token_demo(&public_key);
         let priority_fee_sompi = SOMPI_PER_KASPA;
+
+        println!("Account name encoding: {}", encode_account_name(&script_sig));
 
         let prev_tx_id = TransactionId::from_str(
             "770eb9819a31821d9d2399e2f35e2433b72637e393d71ecc9b8d0250f49153c3",

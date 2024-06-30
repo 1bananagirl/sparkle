@@ -6,7 +6,7 @@ use kaspa_wallet_core::prelude::{
 };
 use kaspa_wallet_core::tx::PaymentOutputs;
 use pad::{Alignment, PadStr};
-use sparkle_core::inscription::{demo_keypair, deploy_token_demo, reveal_transaction};
+use sparkle_core::inscription::{demo_keypair, deploy_token_demo, reveal_transaction, check_account_encoding};
 use sparkle_rs::imports::*;
 use sparkle_rs::monitor::monitor;
 use sparkle_rs::result::Result;
@@ -345,6 +345,10 @@ impl Wallet {
             .await
             .unwrap();
 
+        // self.wallet
+        //     .as_api().accounts_create(wallet_secret, account_create_args)
+
+
         // Wait for commit UTXO
         match monitor_handle.await {
             Ok(_) => {
@@ -423,6 +427,25 @@ impl Wallet {
                 println!("reveal tx {:?}", reveal_tx);
             }
             Err(e) => eprintln!("Monitor task failed: {:?}", e),
+        }
+    }
+
+    pub async fn demo_naming(&self) {
+                        
+        if let Ok(descriptors) = self.wallet
+            .as_api()
+            .accounts_enumerate().await {
+
+            println!("Analyzing account encodings...");
+
+            for descriptor in descriptors {
+                let account_name = descriptor.name().clone().unwrap_or("N/A".to_string());
+
+                if let Some(decoded) = check_account_encoding(&account_name){
+
+                    println!("Token operation account: {}", decoded);
+                }
+            }
         }
     }
 }
