@@ -478,16 +478,17 @@ dependencies = [
 
 [[package]]
 name = "bindgen"
-version = "0.69.4"
+version = "0.65.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a00dc851838a2120612785d195287475a3ac45514741da670b735818822129a0"
+checksum = "cfdf7b466f9a4903edc73f95d6d2bcd5baf8ae620638762244d3f60143643cc5"
 dependencies = [
- "bitflags 2.5.0",
+ "bitflags 1.3.2",
  "cexpr",
  "clang-sys",
- "itertools 0.11.0",
  "lazy_static",
  "lazycell",
+ "peeking_take_while",
+ "prettyplease",
  "proc-macro2",
  "quote",
  "regex",
@@ -789,7 +790,7 @@ dependencies = [
  "num-traits",
  "serde",
  "wasm-bindgen",
- "windows-targets 0.52.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -1169,6 +1170,37 @@ dependencies = [
 ]
 
 [[package]]
+name = "derive_builder"
+version = "0.20.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0350b5cb0331628a5916d6c5c0b72e97393b8b6b03b47a9284f4e7f5a405ffd7"
+dependencies = [
+ "derive_builder_macro",
+]
+
+[[package]]
+name = "derive_builder_core"
+version = "0.20.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d48cda787f839151732d396ac69e3473923d54312c070ee21e9effcaa8ca0b1d"
+dependencies = [
+ "darling",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.66",
+]
+
+[[package]]
+name = "derive_builder_macro"
+version = "0.20.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "206868b8242f27cecce124c19fd88157fbd0dd334df2587f36417bafbc85097b"
+dependencies = [
+ "derive_builder_core",
+ "syn 2.0.66",
+]
+
+[[package]]
 name = "derive_more"
 version = "0.99.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1236,6 +1268,18 @@ name = "downcast-rs"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "75b325c5dbd37f80359721ad39aca5a29fb04c89279657cffdda8736d0c0b9d2"
+
+[[package]]
+name = "duct"
+version = "0.13.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e4ab5718d1224b63252cd0c6f74f6480f9ffeb117438a2e0f5cf6d9a4798929c"
+dependencies = [
+ "libc",
+ "once_cell",
+ "os_pipe",
+ "shared_child",
+]
 
 [[package]]
 name = "either"
@@ -2250,8 +2294,8 @@ dependencies = [
  "smallvec",
  "thiserror",
  "wasm-bindgen",
- "workflow-log",
- "workflow-wasm",
+ "workflow-log 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2276,7 +2320,7 @@ dependencies = [
  "subtle",
  "thiserror",
  "wasm-bindgen",
- "workflow-wasm",
+ "workflow-wasm 0.15.0",
  "zeroize",
 ]
 
@@ -2304,8 +2348,8 @@ dependencies = [
  "serde_json",
  "thiserror",
  "wasm-bindgen",
- "workflow-log",
- "workflow-wasm",
+ "workflow-log 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2336,10 +2380,10 @@ dependencies = [
  "smallvec",
  "thiserror",
  "wasm-bindgen",
- "workflow-core",
- "workflow-log",
- "workflow-serializer",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-serializer 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2381,8 +2425,8 @@ dependencies = [
  "serde_json",
  "thiserror",
  "wasm-bindgen",
- "workflow-log",
- "workflow-wasm",
+ "workflow-log 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2400,7 +2444,7 @@ dependencies = [
  "tokio",
  "triggered",
  "wasm-bindgen",
- "workflow-log",
+ "workflow-log 0.15.0",
 ]
 
 [[package]]
@@ -2418,7 +2462,7 @@ dependencies = [
  "serde",
  "sha2",
  "wasm-bindgen",
- "workflow-wasm",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2454,9 +2498,9 @@ dependencies = [
  "serde-wasm-bindgen",
  "thiserror",
  "wasm-bindgen",
- "workflow-core",
- "workflow-log",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2478,8 +2522,8 @@ dependencies = [
  "separator",
  "serde",
  "thiserror",
- "workflow-core",
- "workflow-log",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
 ]
 
 [[package]]
@@ -2526,9 +2570,9 @@ dependencies = [
  "serde",
  "thiserror",
  "triggered",
- "workflow-core",
- "workflow-log",
- "workflow-serializer",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-serializer 0.15.0",
 ]
 
 [[package]]
@@ -2543,7 +2587,7 @@ dependencies = [
  "kaspa-utils",
  "num",
  "wasm-bindgen",
- "workflow-wasm",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2582,9 +2626,9 @@ dependencies = [
  "thiserror",
  "uuid 1.6.1",
  "wasm-bindgen",
- "workflow-core",
- "workflow-serializer",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-serializer 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2606,6 +2650,7 @@ dependencies = [
  "blake2b_simd",
  "borsh",
  "cfg-if 1.0.0",
+ "hexplay",
  "indexmap 2.2.6",
  "itertools 0.11.0",
  "kaspa-addresses",
@@ -2625,7 +2670,7 @@ dependencies = [
  "smallvec",
  "thiserror",
  "wasm-bindgen",
- "workflow-wasm",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2643,15 +2688,18 @@ dependencies = [
  "async-channel 2.3.1",
  "borsh",
  "cfg-if 1.0.0",
+ "duct",
  "event-listener 2.5.3",
  "faster-hex 0.6.1",
  "ipnet",
  "itertools 0.11.0",
  "log",
+ "mac_address",
  "num_cpus",
  "parking_lot",
  "rlimit",
  "serde",
+ "sha2",
  "smallvec",
  "sysinfo",
  "thiserror",
@@ -2705,10 +2753,10 @@ dependencies = [
  "kaspa-utils",
  "kaspa-wallet-keys",
  "kaspa-wallet-macros",
+ "kaspa-wallet-pskt",
  "kaspa-wasm-core",
  "kaspa-wrpc-client",
  "kaspa-wrpc-wasm",
- "lazy_static",
  "md-5",
  "pad",
  "pbkdf2",
@@ -2728,12 +2776,12 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "workflow-core",
- "workflow-log",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
  "workflow-node",
- "workflow-rpc",
+ "workflow-rpc 0.15.0",
  "workflow-store",
- "workflow-wasm",
+ "workflow-wasm 0.15.0",
  "xxhash-rust",
  "zeroize",
 ]
@@ -2765,8 +2813,8 @@ dependencies = [
  "thiserror",
  "wasm-bindgen",
  "wasm-bindgen-futures",
- "workflow-core",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-wasm 0.15.0",
  "zeroize",
 ]
 
@@ -2781,6 +2829,33 @@ dependencies = [
  "regex",
  "syn 1.0.109",
  "xxhash-rust",
+]
+
+[[package]]
+name = "kaspa-wallet-pskt"
+version = "0.14.1"
+dependencies = [
+ "bincode",
+ "derive_builder",
+ "futures",
+ "hex",
+ "js-sys",
+ "kaspa-addresses",
+ "kaspa-bip32",
+ "kaspa-consensus-client",
+ "kaspa-consensus-core",
+ "kaspa-txscript",
+ "kaspa-txscript-errors",
+ "kaspa-utils",
+ "secp256k1",
+ "serde",
+ "serde-value",
+ "serde-wasm-bindgen",
+ "serde_json",
+ "serde_repr",
+ "thiserror",
+ "wasm-bindgen",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2805,9 +2880,9 @@ dependencies = [
  "kaspa-wrpc-wasm",
  "num",
  "wasm-bindgen",
- "workflow-core",
- "workflow-log",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2815,8 +2890,10 @@ name = "kaspa-wasm-core"
 version = "0.14.1"
 dependencies = [
  "faster-hex 0.6.1",
+ "hexplay",
  "js-sys",
  "wasm-bindgen",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2845,13 +2922,13 @@ dependencies = [
  "toml",
  "wasm-bindgen",
  "wasm-bindgen-futures",
- "workflow-core",
+ "workflow-core 0.15.0",
  "workflow-dom",
- "workflow-http",
- "workflow-log",
- "workflow-rpc",
- "workflow-serializer",
- "workflow-wasm",
+ "workflow-http 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-rpc 0.15.0",
+ "workflow-serializer 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2877,10 +2954,10 @@ dependencies = [
  "serde_json",
  "wasm-bindgen",
  "wasm-bindgen-futures",
- "workflow-core",
- "workflow-log",
- "workflow-rpc",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-rpc 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
@@ -2926,7 +3003,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0c2a198fb6b0eada2a8df47933734e6d35d350665a33a3593d7164fa52c75c19"
 dependencies = [
  "cfg-if 1.0.0",
- "windows-targets 0.52.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -2947,9 +3024,9 @@ dependencies = [
 
 [[package]]
 name = "librocksdb-sys"
-version = "0.16.0+8.10.0"
+version = "0.11.0+8.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ce3d60bc059831dc1c83903fb45c103f75db65c5a7bf22272764d9cc683e348c"
+checksum = "d3386f101bcb4bd252d8e9d2fb41ec3b0862a15a62b478c355b2982efa469e3e"
 dependencies = [
  "bindgen",
  "bzip2-sys",
@@ -3070,6 +3147,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "mac_address"
+version = "1.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8836fae9d0d4be2c8b4efcdd79e828a2faa058a90d005abf42f91cac5493a08e"
+dependencies = [
+ "nix",
+ "winapi",
+]
+
+[[package]]
 name = "macroific"
 version = "1.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3171,6 +3258,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
+name = "memoffset"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "488016bfae457b036d996092f6cb448677611ce4449e970ceaf42695203f218a"
+dependencies = [
+ "autocfg",
+]
+
+[[package]]
 name = "mime"
 version = "0.3.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3253,6 +3349,7 @@ dependencies = [
  "cfg-if 1.0.0",
  "cfg_aliases 0.1.1",
  "libc",
+ "memoffset",
 ]
 
 [[package]]
@@ -3482,6 +3579,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "os_pipe"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5ffd2b0a5634335b135d5728d84c5e0fd726954b87111f7506a61c502280d982"
+dependencies = [
+ "libc",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
 name = "overload"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3548,7 +3655,7 @@ dependencies = [
  "libc",
  "redox_syscall 0.5.2",
  "smallvec",
- "windows-targets 0.52.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -3597,6 +3704,12 @@ dependencies = [
  "digest",
  "hmac",
 ]
+
+[[package]]
+name = "peeking_take_while"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "19b17cddbe7ec3f8bc800887bab5e717348c95ea2ca0b1bf0837fb964dc67099"
 
 [[package]]
 name = "percent-encoding"
@@ -3712,6 +3825,16 @@ name = "ppv-lite86"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5b40af805b3121feab8a3c29f04d8ad262fa8e0561883e7653e024ae4479e6de"
+
+[[package]]
+name = "prettyplease"
+version = "0.2.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f12335488a2f3b0a83b14edad48dca9879ce89b2edd10e80237e4e852dd645e"
+dependencies = [
+ "proc-macro2",
+ "syn 2.0.66",
+]
 
 [[package]]
 name = "primitive-types"
@@ -4010,9 +4133,9 @@ dependencies = [
 
 [[package]]
 name = "rocksdb"
-version = "0.22.0"
+version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6bd13e55d6d7b8cd0ea569161127567cd587676c99f4472f779a0279aa60a7a7"
+checksum = "bb6f170a4041d50a0ce04b0d2e14916d6ca863ea2e422689a5b694395d299ffe"
 dependencies = [
  "libc",
  "librocksdb-sys",
@@ -4324,6 +4447,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde_repr"
+version = "0.1.19"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6c64451ba24fc7a6a2d60fc75dd9c83c90903b19028d4eff35e88fc1e86564e9"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.66",
+]
+
+[[package]]
 name = "serde_spanned"
 version = "0.6.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4426,6 +4560,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f40ca3c46823713e0d4209592e8d6e826aa57e928f09752619fc696c499637f6"
 dependencies = [
  "lazy_static",
+]
+
+[[package]]
+name = "shared_child"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "09fa9338aed9a1df411814a5b2252f7cd206c55ae9bf2fa763f8de84603aa60c"
+dependencies = [
+ "libc",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -4545,6 +4689,7 @@ dependencies = [
  "kaspa-utils",
  "kaspa-wallet-core",
  "kaspa-wallet-keys",
+ "kaspa-wallet-pskt",
  "kaspa-wasm",
  "kaspa-wrpc-client",
  "qrcode",
@@ -4560,12 +4705,12 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "workflow-core",
- "workflow-http",
- "workflow-log",
- "workflow-rpc",
- "workflow-serializer",
- "workflow-wasm",
+ "workflow-core 0.14.1",
+ "workflow-http 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc 0.14.2",
+ "workflow-serializer 0.14.1",
+ "workflow-wasm 0.14.1",
 ]
 
 [[package]]
@@ -4590,8 +4735,8 @@ dependencies = [
  "sparkle-core",
  "tempfile",
  "thiserror",
- "workflow-core",
- "workflow-log",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
 ]
 
 [[package]]
@@ -4619,8 +4764,8 @@ dependencies = [
  "tower",
  "tower-http",
  "tracing-subscriber",
- "workflow-core",
- "workflow-log",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
 ]
 
 [[package]]
@@ -4671,9 +4816,9 @@ dependencies = [
  "sparkle-rpc-core",
  "thiserror",
  "tokio",
- "workflow-core",
- "workflow-log",
- "workflow-rpc",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc 0.14.2",
 ]
 
 [[package]]
@@ -4694,10 +4839,10 @@ dependencies = [
  "sparkle-rpc-core",
  "thiserror",
  "tokio",
- "workflow-core",
- "workflow-log",
- "workflow-rpc",
- "workflow-serializer",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc 0.14.2",
+ "workflow-serializer 0.14.1",
 ]
 
 [[package]]
@@ -4716,10 +4861,10 @@ dependencies = [
  "sparkle-macros",
  "thiserror",
  "tokio",
- "workflow-core",
- "workflow-log",
- "workflow-rpc",
- "workflow-serializer",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc 0.14.2",
+ "workflow-serializer 0.14.1",
 ]
 
 [[package]]
@@ -4739,10 +4884,10 @@ dependencies = [
  "sparkle-rpc-core",
  "thiserror",
  "tokio",
- "workflow-core",
- "workflow-log",
- "workflow-rpc",
- "workflow-serializer",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc 0.14.2",
+ "workflow-serializer 0.14.1",
 ]
 
 [[package]]
@@ -4772,6 +4917,7 @@ dependencies = [
  "kaspa-wrpc-client",
  "pad",
  "qrcode",
+ "regex",
  "rpassword",
  "secp256k1",
  "serde",
@@ -4788,11 +4934,11 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "workflow-core",
- "workflow-http",
- "workflow-log",
- "workflow-rpc",
- "workflow-wasm",
+ "workflow-core 0.14.1",
+ "workflow-http 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc 0.14.2",
+ "workflow-wasm 0.14.1",
 ]
 
 [[package]]
@@ -4815,9 +4961,9 @@ dependencies = [
  "num",
  "sparkle-rs",
  "wasm-bindgen",
- "workflow-core",
- "workflow-log",
- "workflow-wasm",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-wasm 0.14.1",
 ]
 
 [[package]]
@@ -4852,11 +4998,11 @@ dependencies = [
  "thiserror",
  "tokio",
  "vergen",
- "workflow-core",
- "workflow-http",
- "workflow-log",
- "workflow-rpc",
- "workflow-wasm",
+ "workflow-core 0.14.1",
+ "workflow-http 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc 0.14.2",
+ "workflow-wasm 0.14.1",
 ]
 
 [[package]]
@@ -5713,7 +5859,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e48a53791691ab099e5e2ad123536d0fff50652600abaf43bbf952894110d0be"
 dependencies = [
  "windows-core",
- "windows-targets 0.52.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -5722,7 +5868,7 @@ version = "0.52.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "33ab640c8d7e35bf8ba19b884ba838ceb4fba93a4e8c65a9059d08afcfc683d9"
 dependencies = [
- "windows-targets 0.52.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -5740,7 +5886,16 @@ version = "0.52.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "282be5f36a8ce781fad8c8ae18fa3f9beff57ec1b52cb3de0789201425d9a33d"
 dependencies = [
- "windows-targets 0.52.5",
+ "windows-targets 0.52.6",
+]
+
+[[package]]
+name = "windows-sys"
+version = "0.59.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e38bc4d79ed67fd075bcc251a1c39b32a1776bbe92e5bef1f0bf1f8c531853b"
+dependencies = [
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -5760,18 +5915,18 @@ dependencies = [
 
 [[package]]
 name = "windows-targets"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f0713a46559409d202e70e28227288446bf7841d3211583a4b53e3f6d96e7eb"
+checksum = "9b724f72796e036ab90c1021d4780d4d3d648aca59e491e6b98e725b84e99973"
 dependencies = [
- "windows_aarch64_gnullvm 0.52.5",
- "windows_aarch64_msvc 0.52.5",
- "windows_i686_gnu 0.52.5",
+ "windows_aarch64_gnullvm 0.52.6",
+ "windows_aarch64_msvc 0.52.6",
+ "windows_i686_gnu 0.52.6",
  "windows_i686_gnullvm",
- "windows_i686_msvc 0.52.5",
- "windows_x86_64_gnu 0.52.5",
- "windows_x86_64_gnullvm 0.52.5",
- "windows_x86_64_msvc 0.52.5",
+ "windows_i686_msvc 0.52.6",
+ "windows_x86_64_gnu 0.52.6",
+ "windows_x86_64_gnullvm 0.52.6",
+ "windows_x86_64_msvc 0.52.6",
 ]
 
 [[package]]
@@ -5782,9 +5937,9 @@ checksum = "2b38e32f0abccf9987a4e3079dfb67dcd799fb61361e53e2882c3cbaf0d905d8"
 
 [[package]]
 name = "windows_aarch64_gnullvm"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7088eed71e8b8dda258ecc8bac5fb1153c5cffaf2578fc8ff5d61e23578d3263"
+checksum = "32a4622180e7a0ec044bb555404c800bc9fd9ec262ec147edd5989ccd0c02cd3"
 
 [[package]]
 name = "windows_aarch64_msvc"
@@ -5794,9 +5949,9 @@ checksum = "dc35310971f3b2dbbf3f0690a219f40e2d9afcf64f9ab7cc1be722937c26b4bc"
 
 [[package]]
 name = "windows_aarch64_msvc"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9985fd1504e250c615ca5f281c3f7a6da76213ebd5ccc9561496568a2752afb6"
+checksum = "09ec2a7bb152e2252b53fa7803150007879548bc709c039df7627cabbd05d469"
 
 [[package]]
 name = "windows_i686_gnu"
@@ -5806,15 +5961,15 @@ checksum = "a75915e7def60c94dcef72200b9a8e58e5091744960da64ec734a6c6e9b3743e"
 
 [[package]]
 name = "windows_i686_gnu"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "88ba073cf16d5372720ec942a8ccbf61626074c6d4dd2e745299726ce8b89670"
+checksum = "8e9b5ad5ab802e97eb8e295ac6720e509ee4c243f69d781394014ebfe8bbfa0b"
 
 [[package]]
 name = "windows_i686_gnullvm"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "87f4261229030a858f36b459e748ae97545d6f1ec60e5e0d6a3d32e0dc232ee9"
+checksum = "0eee52d38c090b3caa76c563b86c3a4bd71ef1a819287c19d586d7334ae8ed66"
 
 [[package]]
 name = "windows_i686_msvc"
@@ -5824,9 +5979,9 @@ checksum = "8f55c233f70c4b27f66c523580f78f1004e8b5a8b659e05a4eb49d4166cca406"
 
 [[package]]
 name = "windows_i686_msvc"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "db3c2bf3d13d5b658be73463284eaf12830ac9a26a90c717b7f771dfe97487bf"
+checksum = "240948bc05c5e7c6dabba28bf89d89ffce3e303022809e73deaefe4f6ec56c66"
 
 [[package]]
 name = "windows_x86_64_gnu"
@@ -5836,9 +5991,9 @@ checksum = "53d40abd2583d23e4718fddf1ebec84dbff8381c07cae67ff7768bbf19c6718e"
 
 [[package]]
 name = "windows_x86_64_gnu"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4e4246f76bdeff09eb48875a0fd3e2af6aada79d409d33011886d3e1581517d9"
+checksum = "147a5c80aabfbf0c7d901cb5895d1de30ef2907eb21fbbab29ca94c5b08b1a78"
 
 [[package]]
 name = "windows_x86_64_gnullvm"
@@ -5848,9 +6003,9 @@ checksum = "0b7b52767868a23d5bab768e390dc5f5c55825b6d30b86c844ff2dc7414044cc"
 
 [[package]]
 name = "windows_x86_64_gnullvm"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "852298e482cd67c356ddd9570386e2862b5673c85bd5f88df9ab6802b334c596"
+checksum = "24d5b23dc417412679681396f2b49f3de8c1473deb516bd34410872eff51ed0d"
 
 [[package]]
 name = "windows_x86_64_msvc"
@@ -5860,9 +6015,9 @@ checksum = "ed94fce61571a4006852b7389a063ab983c02eb1bb37b47f8272ce92d06d9538"
 
 [[package]]
 name = "windows_x86_64_msvc"
-version = "0.52.5"
+version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bec47e5bfd1bff0eeaf6d8b485cc1074891a197ab4225d504cb7a1ab88b02bf0"
+checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
 
 [[package]]
 name = "winnow"
@@ -5894,24 +6049,24 @@ dependencies = [
 
 [[package]]
 name = "workflow-chrome"
-version = "0.14.0"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9d24f8060d11a8eeeb25f0af9c229a94e0998d14a7a1932eb25bf9662e0775ed"
+checksum = "2752ac67d1a571d034279a9af0519890dd49638789c273399c095433ee4198d5"
 dependencies = [
  "cfg-if 1.0.0",
  "chrome-sys",
  "js-sys",
  "thiserror",
  "wasm-bindgen",
- "workflow-core",
- "workflow-log",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
 ]
 
 [[package]]
 name = "workflow-core"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d889e6327e09b88827953e6bc6b13cb883b2b19b04185c75a6a05eede517fb1e"
+checksum = "435deca3aa42b8d1d7291c715a7bce642b1a739b5185301583f03df0d1b07153"
 dependencies = [
  "async-channel 2.3.1",
  "async-std",
@@ -5935,15 +6090,47 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "workflow-core-macros",
- "workflow-log",
+ "workflow-core-macros 0.14.1",
+ "workflow-log 0.14.1",
+]
+
+[[package]]
+name = "workflow-core"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3e4fbdb34a153dae3cb7ecb6f84960015b7cba37465ff02fb982ded2d1b79bf"
+dependencies = [
+ "async-channel 2.3.1",
+ "async-std",
+ "borsh",
+ "bs58",
+ "cfg-if 1.0.0",
+ "chrono",
+ "dirs",
+ "faster-hex 0.9.0",
+ "futures",
+ "getrandom",
+ "instant",
+ "js-sys",
+ "rand",
+ "serde",
+ "serde-wasm-bindgen",
+ "thiserror",
+ "tokio",
+ "triggered",
+ "vergen",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+ "workflow-core-macros 0.15.0",
+ "workflow-log 0.15.0",
 ]
 
 [[package]]
 name = "workflow-core-macros"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fba00e4a92112229e904826d366b4f518068be9c6a7f7c2d3f9f847ec917cf6b"
+checksum = "25c5038d09456bd035ba50141cf1561dd20e9bbb71a09d500aec19087197a163"
 dependencies = [
  "convert_case 0.6.0",
  "parse-variants",
@@ -5953,14 +6140,31 @@ dependencies = [
  "regex",
  "sha2",
  "syn 1.0.109",
- "workflow-macro-tools",
+ "workflow-macro-tools 0.14.1",
+]
+
+[[package]]
+name = "workflow-core-macros"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fb3c5924a19620185bdbfdbd66211e1aa0e55e65497e6c2501b2e29f4ddb4d2b"
+dependencies = [
+ "convert_case 0.6.0",
+ "parse-variants",
+ "proc-macro-error",
+ "proc-macro2",
+ "quote",
+ "regex",
+ "sha2",
+ "syn 1.0.109",
+ "workflow-macro-tools 0.15.0",
 ]
 
 [[package]]
 name = "workflow-dom"
-version = "0.14.0"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a2981dac7b9c3148c70e98959f90d878de28ad3546c496825faa6821122ab76"
+checksum = "abfb07aa5b3da1f943cba196777afb1ee7c189372846b2d8de3c8510de8c8a0c"
 dependencies = [
  "futures",
  "js-sys",
@@ -5969,16 +6173,16 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "workflow-core",
- "workflow-log",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
 name = "workflow-http"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bb140b523579932d9233a73f7574d73a8e09f5e719cdb7121137116ef82820ac"
+checksum = "e3611c28cecb0702186a1fe203a755a6230b996aa3ce31e2d47a624da40d5c7b"
 dependencies = [
  "cfg-if 1.0.0",
  "reqwest",
@@ -5987,14 +6191,46 @@ dependencies = [
  "thiserror",
  "tokio",
  "wasm-bindgen",
- "workflow-core",
+ "workflow-core 0.14.1",
+]
+
+[[package]]
+name = "workflow-http"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "924411a6fa2d3e2ddd591fe9056fcd6a753e62d6e4a6bc882158efb130c4bb1d"
+dependencies = [
+ "cfg-if 1.0.0",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "wasm-bindgen",
+ "workflow-core 0.15.0",
 ]
 
 [[package]]
 name = "workflow-log"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "43b383ae3a35a179259b67b5e57ff80f545a86472c56c538ba7ee64934426906"
+checksum = "325b15c8334711300005d9cd6210088e734648e7c9d5945d7d781123479636f1"
+dependencies = [
+ "cfg-if 1.0.0",
+ "console",
+ "downcast",
+ "hexplay",
+ "lazy_static",
+ "log",
+ "termcolor",
+ "wasm-bindgen",
+]
+
+[[package]]
+name = "workflow-log"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3ef6324e476d8fe35c97493b796cd5edb77ad1c9fc41b141ddd898b874c822f"
 dependencies = [
  "cfg-if 1.0.0",
  "console",
@@ -6008,9 +6244,22 @@ dependencies = [
 
 [[package]]
 name = "workflow-macro-tools"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "059b3f3d8acfd2863ccebbd18096166ba45391f69f3825014968ea92bd96a9df"
+checksum = "03365620b45f09dfbb17b2ee79d8f24adccf7b70661f8fa177fd94369785d6d3"
+dependencies = [
+ "convert_case 0.6.0",
+ "parse-variants",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "workflow-macro-tools"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "41f2a006332e207a538701b09db662467d6cd612465aafad1057eb44847a652e"
 dependencies = [
  "convert_case 0.6.0",
  "parse-variants",
@@ -6021,9 +6270,9 @@ dependencies = [
 
 [[package]]
 name = "workflow-node"
-version = "0.14.0"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b310a6999a7e6d725316cb4869819fa0a0894c2cf05f7d93cc6e3a8ad081061"
+checksum = "8035a06ca9213aae806e7839ab15050e818c7b616eef7905c4387bdc07fcad4c"
 dependencies = [
  "borsh",
  "futures",
@@ -6034,17 +6283,28 @@ dependencies = [
  "thiserror",
  "wasm-bindgen",
  "wasm-bindgen-futures",
- "workflow-core",
- "workflow-log",
- "workflow-task",
- "workflow-wasm",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-task 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
 name = "workflow-panic-hook"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "273864a1c98165527a7291ca419c7637e3c42bbe24aa1821010d1bb12d1b28d4"
+checksum = "332d8aded769e0f63cc0bead95105030e3d17ddb373eb6eca6de22672237bedb"
+dependencies = [
+ "cfg-if 1.0.0",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
+name = "workflow-panic-hook"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9324ed149bb13b633fda77b823ef98ff58c0072c9fc9ce70af1d74b83189b42c"
 dependencies = [
  "cfg-if 1.0.0",
  "wasm-bindgen",
@@ -6053,9 +6313,9 @@ dependencies = [
 
 [[package]]
 name = "workflow-rpc"
-version = "0.14.0"
+version = "0.14.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c35df84239b442e2a4bc7f012aeb99bf56b2ce177bfc1fb511f39295284d8432"
+checksum = "fcbfff11e7ffd0408c750070e18f3a9dc43a923ed17819721b6d469b181b875d"
 dependencies = [
  "ahash",
  "async-std",
@@ -6073,19 +6333,62 @@ dependencies = [
  "tokio",
  "tungstenite",
  "wasm-bindgen",
- "workflow-core",
- "workflow-log",
- "workflow-rpc-macros",
- "workflow-task",
- "workflow-wasm",
- "workflow-websocket",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-rpc-macros 0.14.1",
+ "workflow-task 0.14.1",
+ "workflow-wasm 0.14.1",
+ "workflow-websocket 0.14.1",
+]
+
+[[package]]
+name = "workflow-rpc"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b3a8d999bb77b939021f658447e83b3feb7205254eff6499f302a893d38111f0"
+dependencies = [
+ "ahash",
+ "async-std",
+ "async-trait",
+ "borsh",
+ "downcast-rs",
+ "futures",
+ "futures-util",
+ "getrandom",
+ "manual_future",
+ "rand",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "tungstenite",
+ "wasm-bindgen",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-rpc-macros 0.15.0",
+ "workflow-task 0.15.0",
+ "workflow-wasm 0.15.0",
+ "workflow-websocket 0.15.0",
 ]
 
 [[package]]
 name = "workflow-rpc-macros"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ebe36cbf1e1a1a33122ed499dc91d367abc4358e86c9f9126db8829a7085b711"
+checksum = "2de9f5fb79815a13e573421cfd477fcf7b34231b86454d8136abec0866ed8759"
+dependencies = [
+ "parse-variants",
+ "proc-macro-error",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "workflow-rpc-macros"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d940809c8856e40391337c212677bfa4b81af15ff5c5e5a023bf4a98e08d2898"
 dependencies = [
  "parse-variants",
  "proc-macro-error",
@@ -6096,9 +6399,20 @@ dependencies = [
 
 [[package]]
 name = "workflow-serializer"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a7a489dfd457e5128c7342efaee4d95479cb91bba3850b8138f6a2c1bc5ac8b3"
+checksum = "05f373b7962b8c08133606d21a1c15b22944960d742fb187409485bf05a80a6d"
+dependencies = [
+ "ahash",
+ "borsh",
+ "serde",
+]
+
+[[package]]
+name = "workflow-serializer"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a6d60f84ae0bbcb5df48aa8d755656729d5173cf8041f1da26ced4e6badd1607"
 dependencies = [
  "ahash",
  "borsh",
@@ -6107,9 +6421,9 @@ dependencies = [
 
 [[package]]
 name = "workflow-store"
-version = "0.14.0"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "de6a4827802926626f1b6359b180ff4540ae241b1844c0379aa8d567428f5f98"
+checksum = "74ce9b637375a9c329401177bdeed625ae89a46c3089167dde89432856834154"
 dependencies = [
  "async-std",
  "base64 0.22.1",
@@ -6127,29 +6441,41 @@ dependencies = [
  "wasm-bindgen-futures",
  "web-sys",
  "workflow-chrome",
- "workflow-core",
- "workflow-log",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
  "workflow-node",
- "workflow-wasm",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
 name = "workflow-task"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b6549f54b7444b10514cc22193381ca4645f6f2d0c3513026c6fb79a05e4f097"
+checksum = "20e4ef460dbebfec0bc0e0d41e63bddbf2c029d71f5670e81d942cb48beff8ba"
 dependencies = [
  "futures",
  "thiserror",
- "workflow-core",
- "workflow-task-macros",
+ "workflow-core 0.14.1",
+ "workflow-task-macros 0.14.1",
+]
+
+[[package]]
+name = "workflow-task"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c1b0efdb7d1c17f962e967d82815712149d5b50a3657bc3a19b7e4a1c8c4c05b"
+dependencies = [
+ "futures",
+ "thiserror",
+ "workflow-core 0.15.0",
+ "workflow-task-macros 0.15.0",
 ]
 
 [[package]]
 name = "workflow-task-macros"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6b2bb83b731dae95ddb3478f57aa8afb9a6a30ce78b11ff319a84df9296db112"
+checksum = "023d35ec92d9f39c529493ba042273b4986f32e5fb77a17b07bf8cce553a8f5a"
 dependencies = [
  "convert_case 0.6.0",
  "parse-variants",
@@ -6158,14 +6484,30 @@ dependencies = [
  "quote",
  "sha2",
  "syn 1.0.109",
- "workflow-macro-tools",
+ "workflow-macro-tools 0.14.1",
+]
+
+[[package]]
+name = "workflow-task-macros"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68b859c5a882b80b6b942f83afe020d1c2ebd0c610370e922ba35e7d5653f88f"
+dependencies = [
+ "convert_case 0.6.0",
+ "parse-variants",
+ "proc-macro-error",
+ "proc-macro2",
+ "quote",
+ "sha2",
+ "syn 1.0.109",
+ "workflow-macro-tools 0.15.0",
 ]
 
 [[package]]
 name = "workflow-wasm"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dbc78269a2f7384e99bdcde6bd9a32ef28c20e6610d6ba7d817e9d57e7494038"
+checksum = "c38cf4ea411426847214b81b6d560218c1d8fcb4b08255385bdbc23c2b508117"
 dependencies = [
  "cfg-if 1.0.0",
  "faster-hex 0.9.0",
@@ -6176,17 +6518,52 @@ dependencies = [
  "thiserror",
  "wasm-bindgen",
  "wasm-bindgen-futures",
- "workflow-core",
- "workflow-log",
- "workflow-panic-hook",
- "workflow-wasm-macros",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-panic-hook 0.14.1",
+ "workflow-wasm-macros 0.14.1",
+]
+
+[[package]]
+name = "workflow-wasm"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "99adc368acba2fd1c017bdeddca479fa0c170f0a8b2955652ceb07ac3e28bb57"
+dependencies = [
+ "cfg-if 1.0.0",
+ "faster-hex 0.9.0",
+ "futures",
+ "js-sys",
+ "serde",
+ "serde-wasm-bindgen",
+ "thiserror",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-panic-hook 0.15.0",
+ "workflow-wasm-macros 0.15.0",
 ]
 
 [[package]]
 name = "workflow-wasm-macros"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7af80a4b7508805932d80d7c8678374694a0f65cc60e0356597144128f6ee33e"
+checksum = "ee34ee84d2bed7a7696d0fe4bb5575bcf5ff81f9b32db03dd6a6be9b2fc3d385"
+dependencies = [
+ "js-sys",
+ "proc-macro-error",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+ "wasm-bindgen",
+]
+
+[[package]]
+name = "workflow-wasm-macros"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "353dd87151d9e95940ab252c7d61f87c5c76f0a1e6ff0fce4114f5e645e8b6f7"
 dependencies = [
  "js-sys",
  "proc-macro-error",
@@ -6198,9 +6575,9 @@ dependencies = [
 
 [[package]]
 name = "workflow-websocket"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c781fb394b573bf46c574703e4d08600f2947185c39d58839d6fe7ecd0d375b"
+checksum = "fec5010ee2e79cd1ed83afaead53c9f8a31895db0cbaf5d20c82e1bc86c63e9e"
 dependencies = [
  "ahash",
  "async-channel 2.3.1",
@@ -6219,10 +6596,39 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "workflow-core",
- "workflow-log",
- "workflow-task",
- "workflow-wasm",
+ "workflow-core 0.14.1",
+ "workflow-log 0.14.1",
+ "workflow-task 0.14.1",
+ "workflow-wasm 0.14.1",
+]
+
+[[package]]
+name = "workflow-websocket"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2343a4bbac5c0e51ee1c8dea0d581ca9387dba2d73fce3a05d82495d559ab797"
+dependencies = [
+ "ahash",
+ "async-channel 2.3.1",
+ "async-std",
+ "async-trait",
+ "cfg-if 1.0.0",
+ "downcast-rs",
+ "futures",
+ "futures-util",
+ "js-sys",
+ "thiserror",
+ "tokio",
+ "tokio-tungstenite",
+ "triggered",
+ "tungstenite",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+ "workflow-core 0.15.0",
+ "workflow-log 0.15.0",
+ "workflow-task 0.15.0",
+ "workflow-wasm 0.15.0",
 ]
 
 [[package]]
